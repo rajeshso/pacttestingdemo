@@ -41,8 +41,11 @@ pact {
         pactBrokerUrl = pactContractBrokerUrl
     }
 }
-def pactDir = file('src/test/resources/pacts/')
 
+def pactDir = file('src/test/resources/pacts/')
+test {
+    systemProperties['pact.rootDir'] = "${pactDir}"
+}
 clean.doFirst {
     delete("${pactDir}")
 }

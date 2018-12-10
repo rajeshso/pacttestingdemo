@@ -34,8 +34,6 @@ public class Consumer {
         .status(200)
         .body("Hello John")
         .toPact();
-      File file = new File(".");
-      System.out.println("ABCDE = "+file.getAbsolutePath());
       requestResponsePact.write("src/test/resources/pacts/", PactSpecVersion.V3);
       return requestResponsePact;
   }
