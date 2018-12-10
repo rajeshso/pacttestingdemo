@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+        classpath("au.com.dius:pact-jvm-provider-gradle_2.12:3.5.19")
+    }
+}
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id "au.com.dius.pact" version "3.2.11"
+}
+
+version = ''
+sourceCompatibility = 1.8
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile('org.springframework.boot:spring-boot-starter-web')
+    runtimeOnly('com.h2database:h2')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testCompile('au.com.dius:pact-jvm-consumer-junit_2.12:3.6.0')
+    testCompile("au.com.dius:pact-jvm-consumer-java8_2.12:3.5.19")
+}
+
+jar {
+    enabled = true
+}
+bootJar {
+    mainClassName = 'com.n2.ConsumerApplication'
+}
+pact {
+    publish {
+        pactDirectory = pactContractsDir
+        pactBrokerUrl = pactContractBrokerUrl
+    }
+}
+def pactDir = file('src/test/resources/pacts/')
+
+clean.doFirst {
+    delete("${pactDir}")
+}
