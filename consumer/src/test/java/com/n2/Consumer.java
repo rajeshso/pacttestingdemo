@@ -34,7 +34,7 @@ public class Consumer {
         .status(200)
         .body("Hello John")
         .toPact();
-      requestResponsePact.write("src/test/resources/pacts/", PactSpecVersion.V3);
+      requestResponsePact.write("build/pacts/", PactSpecVersion.V3);
       return requestResponsePact;
   }
 
