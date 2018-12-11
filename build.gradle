@@ -36,19 +36,7 @@ subprojects {
         jcenter()
         maven { url "http://repo.maven.apache.org/maven2" }
     }
-
-    uploadArchives {
-        repositories {
-//            mavenDeployer {
-//                snapshotRepository(url: "http://repo.mylti3gh7p4x.net/repository/maven-snapshots/") {
-//                    authentication(userName: "${nexusUsername}", password: "${nexusPassword}")
-//                }
-//                repository(url: "http://repo.mylti3gh7p4x.net/repository/maven-releases/") {
-//                    authentication(userName: "${nexusUsername}", password: "${nexusPassword}")
-//                }
-//            }
-        }
-    }
+    
 
     configurations {
         testArtifacts
